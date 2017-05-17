@@ -34,10 +34,33 @@ public class ConnectFour {
         char VResult = checkVertical();
         char HResult = checkHorizontal();
         char DResult = checkDiagonal();
+        char result = ' ';
 
         System.out.printf("VResult: %s%n", VResult);
         System.out.printf("HResult: %s%n", HResult);
-        System.out.printf("DResult: %s", DResult);
+        System.out.printf("DResult: %s%n", DResult);
+
+        if(VResult == 'N' && HResult == 'N' && DResult == 'N')
+            result = 'N';
+        else if(VResult == 'T' || HResult == 'T' || DResult == 'T')
+            result = 'T';
+        else if(VResult != 'T' && VResult != 'N') { //here
+            if(HResult != 'T' && HResult != 'N' && HResult != VResult)
+                result = 'T';
+            else if(DResult != 'T' && DResult != 'N' && DResult != VResult)
+                result = 'T';
+            else
+                result = VResult;
+        }
+        else if(HResult != 'T' && HResult != 'N') {
+            if(DResult != 'T' && DResult != 'N' && DResult != HResult)
+                result = 'T';
+            else
+                result = HResult;
+        }
+        else
+            result = DResult;
+        System.out.printf("FINAL RESULT: %s", result);
 
         //N - nobody won yet
         //T - a tie
@@ -55,7 +78,7 @@ public class ConnectFour {
                 cell = board[row][col];
                 //if the four diagonals are the same
                 if(cell != '-' && cell == board[row-1][col+1] && cell == board[row-2][col+2] && cell == board[row-3][col+3]) {
-                    if(result != 'N') {
+                    if(result != 'N' && cell != result) {
                         result = 'T';
                         return result;
                     }
@@ -71,7 +94,7 @@ public class ConnectFour {
                 cell = board[row][col];
                 //if the four diagonals are the same
                 if(cell != '-' && cell == board[row+1][col+1] && cell == board[row+2][col+2] && cell == board[row+3][col+3]) {
-                    if(result != 'N') {
+                    if(result != 'N' && cell != result) {
                         result = 'T';
                         return result;
                     }
