@@ -1,11 +1,14 @@
 package cs115;
 
+import org.junit.Test;
+
 /**
  * Created by icyhot on 15/05/2017.
  */
 public class ConnectFour {
 
     private char[][] board;
+    char result;
 
     public ConnectFour() {
         board = new char[6][7];
@@ -30,21 +33,22 @@ public class ConnectFour {
         }
     }
 
-    public void checkForWinner() {
+    public char checkForWinner() {
         char VResult = checkVertical();
         char HResult = checkHorizontal();
         char DResult = checkDiagonal();
-        char result = ' ';
+        result = ' ';
 
-        System.out.printf("VResult: %s%n", VResult);
-        System.out.printf("HResult: %s%n", HResult);
-        System.out.printf("DResult: %s%n", DResult);
+//        System.out.printf("VResult: %s%n", VResult);
+//        System.out.printf("HResult: %s%n", HResult);
+//        System.out.printf("DResult: %s%n", DResult);
+
 
         if(VResult == 'N' && HResult == 'N' && DResult == 'N')
             result = 'N';
         else if(VResult == 'T' || HResult == 'T' || DResult == 'T')
             result = 'T';
-        else if(VResult != 'T' && VResult != 'N') { //here
+        else if(VResult != 'T' && VResult != 'N') {
             if(HResult != 'T' && HResult != 'N' && HResult != VResult)
                 result = 'T';
             else if(DResult != 'T' && DResult != 'N' && DResult != VResult)
@@ -60,11 +64,13 @@ public class ConnectFour {
         }
         else
             result = DResult;
-        System.out.printf("FINAL RESULT: %s", result);
+
 
         //N - nobody won yet
         //T - a tie
         //Anything else - the char that won
+
+        return result;
 
     }
 
@@ -134,6 +140,7 @@ public class ConnectFour {
                     else {
                         result = temp;
                     }
+
                 }
             }
             count = 0; //because you move from very top to the very bottom
@@ -185,5 +192,10 @@ public class ConnectFour {
             }
             System.out.println();
         }
+
+
+
+        System.out.printf("FINAL RESULT: %s%n%n", result);
     }
+
 }
