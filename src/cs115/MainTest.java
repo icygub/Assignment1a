@@ -11,6 +11,7 @@ public class MainTest {
     @Test
     public void main() throws Exception {
         ConnectFour cf = new ConnectFour();
+        char result;
 
         cf.play('X', 0);
         cf.play('X', 0);
@@ -18,7 +19,8 @@ public class MainTest {
         cf.play('X', 0);
         cf.play('X', 0);
         cf.play('$', 0);
-        assertEquals("X should be winning", 'N', cf.checkForWinner());
+        result = cf.checkForWinner();
+        assertEquals("X should be winning", 'N', result);
 
         cf.play('X', 1);
         cf.play('X', 1);
@@ -26,7 +28,8 @@ public class MainTest {
         cf.play('$', 1);
         cf.play('$', 1);
         cf.play('X', 1);
-        assertEquals("Should be a tie", 'N', cf.checkForWinner());
+        result = cf.checkForWinner();
+        assertEquals("Should be a tie", 'N', result);
         cf.play('X', 2);
         cf.play('X', 2);
         cf.play('$', 2);
@@ -36,7 +39,8 @@ public class MainTest {
         cf.play('X', 3);
         cf.play('$', 3);
         cf.play('$', 3);
-        assertEquals("I don't know", 'T', cf.checkForWinner());
+        result = cf.checkForWinner();
+        assertEquals("I don't know", 'T', result);
         cf.play('X', 3);
         cf.play('X', 3);
         cf.play('X', 3);
@@ -61,9 +65,10 @@ public class MainTest {
         cf.play('X', 6);
         cf.play('X', 6);
         cf.play('X', 6);
-        assertEquals("Should be a tie", 'T', cf.checkForWinner());
+        result = cf.checkForWinner();
+        assertEquals("Should be a tie", 'T', result);
 
-        cf.printTable();
+        cf.printTable(result);
     }
 
 }

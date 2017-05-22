@@ -1,7 +1,5 @@
 package cs115;
 
-import org.junit.Test;
-
 /**
  * Created by icyhot on 15/05/2017.
  */
@@ -21,9 +19,15 @@ public class ConnectFour {
         System.out.println();
     }
 
+    /**
+     * Places a piece on the board
+     * @param choice
+     * @param col
+     */
     public void play(char choice, int col) {
         //if col is valid
         if (col <= board[0].length-1 && col >= 0) {
+            //places piece on lowest possible spot
             for(int row = board.length-1; row >= 0; row--) {
                 if(board[row][col] == '-') {
                     board[row][col] = choice;
@@ -33,16 +37,15 @@ public class ConnectFour {
         }
     }
 
+    /**
+     * Returns the symbol that is winning, or T if tie, or N if none.
+     * @return result
+     */
     public char checkForWinner() {
         char VResult = checkVertical();
         char HResult = checkHorizontal();
         char DResult = checkDiagonal();
         result = ' ';
-
-//        System.out.printf("VResult: %s%n", VResult);
-//        System.out.printf("HResult: %s%n", HResult);
-//        System.out.printf("DResult: %s%n", DResult);
-
 
         if(VResult == 'N' && HResult == 'N' && DResult == 'N')
             result = 'N';
@@ -65,14 +68,10 @@ public class ConnectFour {
         else
             result = DResult;
 
-
-        //N - nobody won yet
-        //T - a tie
-        //Anything else - the char that won
-
         return result;
 
     }
+
 
     public char checkDiagonal() {
         char result = 'N';
@@ -84,7 +83,8 @@ public class ConnectFour {
                 cell = board[row][col];
                 //if the four diagonals are the same
                 if(cell != '-' && cell == board[row-1][col+1] && cell == board[row-2][col+2] && cell == board[row-3][col+3]) {
-                    if(result != 'N' && cell != result) {
+                    //if first cell has 4 in a row
+                    if(result != 'N' && result != cell) {
                         result = 'T';
                         return result;
                     }
@@ -100,7 +100,8 @@ public class ConnectFour {
                 cell = board[row][col];
                 //if the four diagonals are the same
                 if(cell != '-' && cell == board[row+1][col+1] && cell == board[row+2][col+2] && cell == board[row+3][col+3]) {
-                    if(result != 'N' && cell != result) {
+                    //if first cell has 4 in a row
+                    if(result != 'N' && result != cell) {
                         result = 'T';
                         return result;
                     }
@@ -185,15 +186,13 @@ public class ConnectFour {
         return result;
     }
 
-    public void printTable() {
+    public void printTable(char result) {
         for(int row = 0; row < board.length; row++) {
             for(int c = 0; c < board[0].length; c++) {
                 System.out.printf("%s ",board[row][c]);
             }
             System.out.println();
         }
-
-
 
         System.out.printf("FINAL RESULT: %s%n%n", result);
     }

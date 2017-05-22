@@ -48,9 +48,10 @@ public class Main {
         cf.play('X', 6);
         cf.play('X', 6);
 
-        cf.printTable();
 
-        cf.checkForWinner();
+        cf.printTable(cf.checkForWinner());
+
+
         System.out.println();
     }
 
