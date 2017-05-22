@@ -8,6 +8,10 @@ public class ConnectFour {
     private char[][] board;
     char result;
 
+    /**
+     * Initializes and creates board
+     * 6 row, 7 columns
+     */
     public ConnectFour() {
         board = new char[6][7];
 

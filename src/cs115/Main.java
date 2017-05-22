@@ -1,5 +1,12 @@
 package cs115;
 
+/**
+ * Assignment1a
+ * Names: John Diaz & Jordan Wells
+ * Date: May 22, 2017
+ * Description: Connect 4
+ * Instructor: Brother Masterson
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -54,18 +61,5 @@ public class Main {
 
         System.out.println();
     }
-
-//            - $ - - - - -
-//            - $ $ - - - -
-//            - $ $ $ - - -
-//            - $ $ X $ - -
-//            - X X X $ $ -
-//    $ $ $ X $ X -
-//    VResult: $
-//    HResult: N
-//    DResult: T
-//    FINAL RESULT: T
-
-
 
 }
